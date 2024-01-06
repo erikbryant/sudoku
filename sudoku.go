@@ -46,6 +46,14 @@ func (b *Board) Name() string {
 	return b.name
 }
 
+// Grid returns the digit at row, col
+func (b *Board) Grid(row, col int) int {
+	if row < 0 || row > 9 || col < 0 || col > 9 {
+		return -1
+	}
+	return b.grid[row][col]
+}
+
 // Print prints a board
 func (b *Board) Print() {
 	fmt.Println(b.Name())
