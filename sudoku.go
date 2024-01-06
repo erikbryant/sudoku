@@ -41,9 +41,14 @@ func New(name string, lines []string) Board {
 	return b
 }
 
-// print prints a board
-func (b *Board) print() {
-	fmt.Println(b.name)
+// Name returns the name of the board
+func (b *Board) Name() string {
+	return b.name
+}
+
+// Print prints a board
+func (b *Board) Print() {
+	fmt.Println(b.Name())
 	for row := 0; row < 9; row++ {
 		for col := 0; col < 9; col++ {
 			if b.grid[col][row] == 0 {
@@ -350,8 +355,8 @@ func (b *Board) countSolved() int {
 	return count
 }
 
-// solved returns whether a given board is solved
-func (b *Board) solved() bool {
+// Solved returns whether a given board is Solved
+func (b *Board) Solved() bool {
 	if !b.valid() {
 		return false
 	}
@@ -393,8 +398,8 @@ func (b *Board) guess() Board {
 	for digit := range b.ticks[col][row] {
 		b2 := b.copy()
 		b2.setDigit(col, row, digit)
-		b2.solve()
-		if b2.solved() {
+		b2.Solve()
+		if b2.Solved() {
 			return b2
 		}
 	}
@@ -402,15 +407,15 @@ func (b *Board) guess() Board {
 	return *b
 }
 
-// solve tries to solve a given board
-func (b *Board) solve() {
+// Solve tries to solve a given board
+func (b *Board) Solve() {
 	for {
 		before := b.countSolved()
 
 		b.singleTick()
 		b.doubleTick()
 
-		if b.solved() {
+		if b.Solved() {
 			return
 		}
 
@@ -424,7 +429,7 @@ func (b *Board) solve() {
 		}
 	}
 
-	if !b.solved() {
+	if !b.Solved() {
 		*b = b.guess()
 	}
 }
