@@ -1,5 +1,3 @@
-.DS_Store
-
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -15,3 +13,9 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Local files
+.fleet/
+.idea/
+.vscode/
+.DS_Store
